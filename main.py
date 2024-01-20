@@ -33,12 +33,9 @@ async def ajuda(ctx):
 @bot.command() #!rz ban - O bot irá banir o usuário mencionado.
 async def ban(ctx:commands.Context, user:discord.Member):
     autor = ctx.author
-    #lista_banidos = []
-    if ctx.message.author.guild_permissions.ban_members():
+    if ctx.message.author.guild_permissions.ban_members:
         await ctx.guild.ban(user)
         await ctx.reply(f'O/A {user.display_name} foi banido(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
-        #lista_banidos.append(user)
-        #return lista_banidos
     else:
         await ctx.reply(f'{autor} pare de tentar banir as pessoas! Caso contrário o próximo será você..')
 
@@ -126,18 +123,23 @@ async def spam(ctx, qt:int, *, frase):
         await ctx.send(frase)
 
 @bot.command() #!rz unban (user) - O bot irá desbanir o usuário.
-async def unban(ctx: commands.Context, user: discord.User):
-    autor = ctx.author
-    if ctx.message.author.guild_permissions.ban_members:
-        banned_users = await ctx.guild.bans()
-        for banned_entry in banned_users:
-            if banned_entry.user.id == user.id:
-                await ctx.guild.unban(user)
-                await ctx.reply(f'O/A {user.name} foi desbanido(a) desse mundo! Parece que os laços do espaço-tempo foram restaurados, e agora ele(a) está livre para retornar ao nosso universo.')
-                return
-        await ctx.reply(f'{user.name} não está banido(a)!')
-    else:
-        await ctx.reply(f'{autor} você não tem permissão para desbanir membros!')
+async def unban(ctx, member_id:int):
+    try:
+        usuarios_banidos = []
+        async for ban_entry in ctx.guild.bans():
+            usuarios_banidos.append(ban_entry.user)
+
+        # Agora você pode trabalhar com a lista de usuários banidos
+        user_to_unban = discord.utils.get(usuarios_banidos, id=int(member_id))
+
+        if user_to_unban:
+            await ctx.guild.unban(user_to_unban)
+            await ctx.send(f'O membro {user_to_unban.mention} foi desbanido! Em nome de Emilia, a justiça foi feita.')
+        else:
+            await ctx.send('Membro não encontrado na lista de banidos.')
+
+    except Exception as e:
+        print(f"Erro durante o comando unban: {e}")
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
