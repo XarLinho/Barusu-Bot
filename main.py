@@ -30,6 +30,15 @@ async def ajuda(ctx):
     )    
     await ctx.reply(embed=comandos)
 
+@bot.command() #!rz ban - O bot irá banir o usuário mencionado.
+async def ban(ctx:commands.Context, user:discord.Member):
+    autor = ctx.author
+    if ctx.message.author.guild_permissions.ban_members():
+        await ctx.guild.ban(user)
+        await ctx.reply(f'O/A {user.display_name} foi banido(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
+    else:
+        await ctx.reply(f'{autor} pare de tentar banir as pessoas! Caso contrário o próximo será você..')
+
 @bot.command() #!rz dado - O bot irá rodar um dado e dirá o resultado.
 async def dado(ctx, ld:int):
     lado = random.randint(1,ld)
@@ -122,8 +131,8 @@ async def on_message(pal:discord.Message):
 @bot.event #Quando o bot estiver online irá aparecer no console.
 async def on_ready():
     print(f'{bot.user} está online!')
-    canal = bot.get_channel(757649361248190546)
-    await canal.send('Spawnpoint!')
+    #canal = bot.get_channel(757649361248190546)
+    #await canal.send('Spawnpoint!')
 
 #VALIDAR TOKEN
 bot.run(TOKEN)
