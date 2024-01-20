@@ -4,8 +4,8 @@ from discord.ext import commands
 
 import random
 import time
-import locale
 
+from datetime import datetime
 from variaveis import ajuda_descricao, exposeds, fanfics, piadas
 from keep_alive import keep_alive
 keep_alive()
@@ -37,10 +37,12 @@ async def dado(ctx, ld:int):
 @bot.command() #!rz dia - O bot irá lhe informar que dia é hoje.
 async def dia(ctx):
     pessoa = ctx.author
-    locale.setlocale(locale.LC_TIME, 'pt_BR.utf-8')
-    tempo_atual = time.time()
-    tempo_local = time.localtime(tempo_atual)
-    dia = time.strftime("%A", tempo_local)
+    
+    fuso_horario_brasil = pytz.timezone('America/Sao_Paulo')
+    data_hora_brasil = datetime.now(fuso_horario_brasil)
+    dia = data_hora_brasil.strftime('%d/%m/%Y')
+    hora = data_hora_brasil.strftime('%H:%M:%S')
+    
     await ctx.reply(f'Hoje é {dia} {pessoa.display_name}.')
 
 @bot.command() #!rz diga (mensagem) - O bot vai repetir o que o user pediu e apagar a msg original.
