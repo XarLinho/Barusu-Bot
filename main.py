@@ -4,6 +4,7 @@ from discord.ext import commands
 
 import random
 import time
+import pytz
 
 from datetime import datetime
 from variaveis import ajuda_descricao, exposeds, fanfics, piadas
@@ -41,7 +42,6 @@ async def dia(ctx):
     fuso_horario_brasil = pytz.timezone('America/Sao_Paulo')
     data_hora_brasil = datetime.now(fuso_horario_brasil)
     dia = data_hora_brasil.strftime('%d/%m/%Y')
-    hora = data_hora_brasil.strftime('%H:%M:%S')
     
     await ctx.reply(f'Hoje é {dia} {pessoa.display_name}.')
 
@@ -63,8 +63,12 @@ async def fanfic(ctx):
 @bot.command() #!rz hora - O bot irá informar a hora atual.
 async def hora(ctx:commands.Context):
     pessoa = ctx.author
-    hora = time.strftime('%H:%M', time.localtime())
-    await ctx.reply(f"{pessoa.display_name} Agora são {hora}.")    
+
+    fuso_horario_brasil = pytz.timezone('America/Sao_Paulo')
+    data_hora_brasil = datetime.now(fuso_horario_brasil)
+    hora = data_hora_brasil.strftime('%H:%M:%S')
+    
+    await ctx.reply(f'Agora são {hora} {pessoa.display_name}.')
 
 @bot.command() #!rz limpar (qt) - O bot irá limpar determinado número de mensagens do chat.
 async def limpar(ctx, quantidade: int):
