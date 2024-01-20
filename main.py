@@ -33,9 +33,12 @@ async def ajuda(ctx):
 @bot.command() #!rz ban - O bot irá banir o usuário mencionado.
 async def ban(ctx:commands.Context, user:discord.Member):
     autor = ctx.author
-    if ctx.message.author.guild_permissions.ban_members:
+    #lista_banidos = []
+    if ctx.message.author.guild_permissions.ban_members():
         await ctx.guild.ban(user)
         await ctx.reply(f'O/A {user.display_name} foi banido(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
+        #lista_banidos.append(user)
+        #return lista_banidos
     else:
         await ctx.reply(f'{autor} pare de tentar banir as pessoas! Caso contrário o próximo será você..')
 
@@ -79,6 +82,11 @@ async def hora(ctx:commands.Context):
     
     await ctx.reply(f'Agora são {hora} {pessoa.display_name}.')
 
+#@bot.command() #!rz lista_ban  - O bot irá informar a lista dos usuários banidos do servidor.
+#async def lista_ban(ctx):
+#    autor = ctx.author
+#    await ctx.reply(f'Os usuários que já saíram desse mundo são:\n {lista_banidos}')
+
 @bot.command() #!rz limpar (qt) - O bot irá limpar determinado número de mensagens do chat.
 async def limpar(ctx, quantidade: int):
     # Verificar se o autor da mensagem tem permissão para limpar mensagens
@@ -116,6 +124,20 @@ async def spam(ctx, qt:int, *, frase):
     await ctx.message.delete()
     for i in range(qt):
         await ctx.send(frase)
+
+@bot.command() #!rz unban (user) - O bot irá desbanir o usuário.
+async def unban(ctx: commands.Context, user: discord.User):
+    autor = ctx.author
+    if ctx.message.author.guild_permissions.ban_members:
+        banned_users = await ctx.guild.bans()
+        for banned_entry in banned_users:
+            if banned_entry.user.id == user.id:
+                await ctx.guild.unban(user)
+                await ctx.reply(f'O/A {user.name} foi desbanido(a) desse mundo! Parece que os laços do espaço-tempo foram restaurados, e agora ele(a) está livre para retornar ao nosso universo.')
+                return
+        await ctx.reply(f'{user.name} não está banido(a)!')
+    else:
+        await ctx.reply(f'{autor} você não tem permissão para desbanir membros!')
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
