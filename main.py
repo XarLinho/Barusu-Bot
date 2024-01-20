@@ -33,7 +33,7 @@ async def ajuda(ctx):
 @bot.command() #!rz ban - O bot irá banir o usuário mencionado.
 async def ban(ctx:commands.Context, user:discord.Member):
     autor = ctx.author
-    if ctx.message.author.guild_permissions.ban_members():
+    if ctx.message.author.guild_permissions.ban_members:
         await ctx.guild.ban(user)
         await ctx.reply(f'O/A {user.display_name} foi banido(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
     else:
