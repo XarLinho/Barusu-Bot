@@ -122,8 +122,8 @@ async def on_message(pal:discord.Message):
 @bot.event #Quando o bot estiver online irá aparecer no console.
 async def on_ready():
     print(f'{bot.user} está online!')
-    #canal = bot.get_channel(757649361248190546)
-    #await canal.send('Spawnpoint!')
+    canal = bot.get_channel(757649361248190546)
+    await canal.send('Spawnpoint!')
 
 #VALIDAR TOKEN
 bot.run(TOKEN)
