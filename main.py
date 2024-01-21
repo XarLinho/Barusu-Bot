@@ -7,7 +7,7 @@ import time
 import pytz
 
 from datetime import datetime
-from variaveis import ajuda_descricao, exposeds, fanfics, piadas
+from variaveis import ajuda_descricao, curiosidades, exposeds, fanfics, piadas
 from keep_alive import keep_alive
 keep_alive()
 
@@ -30,14 +30,19 @@ async def ajuda(ctx):
     )    
     await ctx.reply(embed=comandos)
 
-@bot.command() #!rz ban - O bot irá banir o usuário mencionado.
-async def ban(ctx:commands.Context, user:discord.Member):
+@bot.command() #!rz banir (@usuário) - O bot irá banir o usuário mencionado.
+async def banir(ctx:commands.Context, user:discord.Member):
     autor = ctx.author
     if ctx.message.author.guild_permissions.ban_members:
         await ctx.guild.ban(user)
         await ctx.reply(f'O/A {user.display_name} foi banido(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
     else:
         await ctx.reply(f'{autor} pare de tentar banir as pessoas! Caso contrário o próximo será você..')
+
+@bot.command() #!rz curiosidades - O bot irá dizer uma curiosidade
+async def curiosidade(ctx):
+    curiosidade = random.choice(curiosidades)
+    await ctx.reply(curiosidade)
 
 @bot.command() #!rz dado - O bot irá rodar um dado e dirá o resultado.
 async def dado(ctx, ld:int):
@@ -79,11 +84,6 @@ async def hora(ctx:commands.Context):
     
     await ctx.reply(f'Agora são {hora} {pessoa.display_name}.')
 
-#@bot.command() #!rz lista_ban  - O bot irá informar a lista dos usuários banidos do servidor.
-#async def lista_ban(ctx):
-#    autor = ctx.author
-#    await ctx.reply(f'Os usuários que já saíram desse mundo são:\n {lista_banidos}')
-
 @bot.command() #!rz limpar (qt) - O bot irá limpar determinado número de mensagens do chat.
 async def limpar(ctx, quantidade: int):
     # Verificar se o autor da mensagem tem permissão para limpar mensagens
@@ -122,41 +122,61 @@ async def spam(ctx, qt:int, *, frase):
     for i in range(qt):
         await ctx.send(frase)
 
-@bot.command() #!rz unban (user) - O bot irá desbanir o usuário.
-async def unban(ctx, member_id:int):
-    try:
-        usuarios_banidos = []
-        async for ban_entry in ctx.guild.bans():
-            usuarios_banidos.append(ban_entry.user)
+@bot.command() #!rz desbanir (id_user) - O bot irá desbanir o usuário.
+async def desbanir(ctx, member_id:int):
+    usuarios_banidos = []
+    async for ban_entry in ctx.guild.bans():
+        usuarios_banidos.append(ban_entry.user)
 
-        # Agora você pode trabalhar com a lista de usuários banidos
-        user_to_unban = discord.utils.get(usuarios_banidos, id=int(member_id))
+    # Agora você pode trabalhar com a lista de usuários banidos
+    user_to_unban = discord.utils.get(usuarios_banidos, id=int(member_id))
 
-        if user_to_unban:
-            await ctx.guild.unban(user_to_unban)
-            await ctx.send(f'O membro {user_to_unban.mention} foi desbanido! Em nome de Emilia, a justiça foi feita.')
-        else:
-            await ctx.send('Membro não encontrado na lista de banidos.')
+    if user_to_unban:
+        await ctx.guild.unban(user_to_unban)
+        await ctx.send(f'O membro {user_to_unban.mention} foi desbanido! Em nome de Emilia, a justiça foi feita.')
+    else:
+        await ctx.send('Membro não encontrado na lista de banidos.')
 
-    except Exception as e:
-        print(f"Erro durante o comando unban: {e}")
+@bot.command() #!rz kick (@usuário) - O bot irá kickar o usuário mencionado.
+async def kick(ctx:commands.Context, user:discord.Member):
+    autor = ctx.author
+    if ctx.message.author.guild_permissions.ban_members:
+        await ctx.guild.ban(user)
+        await ctx.reply(f'O/A {user.display_name} foi kickado(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
+    else:
+        await ctx.reply(f'{autor} pare de tentar kickar as pessoas! Caso contrário o próximo será você..')
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
 async def on_message(pal:discord.Message):
-    await bot.process_commands(pal)
+    await bot.process_commands(pal) #processar se a mensagem era algum comando.
+
+    #tratamento da mensagem.
+    msg = pal.content.lower() #toda minúscula
+    frase = msg.replace(" ", "") #sem espaços
+
+    #condições
     if pal.author == bot.user:
         return
-    if 'rem' in pal.content.lower():
+    if 'rem' in msg:
         await pal.reply('REM??????')
-    elif 'loritta' in pal.content.lower():
-        await pal.reply('Ela quer ser a rainha do humor, mas acho que seu código fonte está mais para uma comédia romântica do que para algum algoritmo eficiente :rofl:.')    
+    elif 'loritta' in msg:
+        await pal.reply('Ela quer ser a rainha do humor, mas acho que seu código fonte está mais para uma comédia romântica do que para algum algoritmo eficiente :rofl:.')
+    elif 'bomdia' in frase:
+        await pal.reply('Bom diaaa!')
+    elif 'boanoite' in frase:
+        await pal.reply('Dorme bem.')
 
 @bot.event #Quando o bot estiver online irá aparecer no console.
 async def on_ready():
     print(f'{bot.user} está online!')
     #canal = bot.get_channel(757649361248190546)
     #await canal.send('Spawnpoint!')
+
+@bot.event #Quando o usuário digitar um comando errado o bot vai lhe informar e lhe sugerir que utilize o comando de ajuda.
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send(f'Comando não encontrado. Use `!rz ajuda` para ver a lista de comandos disponíveis.')
 
 #VALIDAR TOKEN
 bot.run(TOKEN)
