@@ -1,4 +1,15 @@
-ajuda_descricao = '''***EVENTOS***\n\n> Quando eu spawnar!\n> Não ouse falar da Rem\n> Loritta?Kkkk\n\n ***COMANDOS***\n\n> **!rz ajuda** - Informo todos os comandos.\n> **!rz ban (user) - Irei expulsar o usuário desse mundo.**.\n> **!rz dado** (ld) - Irei rolar um dado de quantos lados você quiser!\n> **!rz dia** - Irei lhe informar o dia atual.\n> **!rz diga** (msg) - Envio no chat o que você mandar.\n> **!rz exposed ** @usuário - Irei revelar o segredinho do usuário mencionado.\n> **!rz fanfic** - Conto uma fanfic aleatória do servidor!\n> **!rz hora** - Irei lhe informar a hora atual.\n> **!rz limpar** (qt) - Irei limpar o número de mensagem que pedir.\n> **!rz mandar** (id_canal) (msg) - Mandarei sua mensagem no canal escolhido.\n> **!rz piada** - Conto uma piada aleatória sobre Re:Zero.\n> **!rz saudar** - Me apresento.\n> **!rz spam** (qt) (msg) - spamo o que você quiser quantas vezes quiseres.'''
+ajuda_descricao = '''***EVENTOS***\n\n> Quando eu spawnar!\n> Bom dia.\n> Comando não encontrado.\n> Não ouse falar da Rem\n> Loritta?Kkkk\n> Boa noite.\n\n ***COMANDOS***\n\n> **!rz ajuda** - Informo todos os comandos.\n> **!rz banir (@usuário)** - Irei expulsar o usuário desse mundo.\n> **!rz curiosidade** - Te contarei uma curiosidade.\n> **!rz dado** (ld) - Irei rolar um dado de quantos lados você quiser!\n> **!rz dia** - Irei lhe informar o dia atual.\n> **!rz diga** (msg) - Envio no chat o que você mandar.\n> **!rz exposed ** (@usuário) - Irei revelar o segredinho do usuário mencionado.\n> **!rz fanfic** - Conto uma fanfic aleatória do servidor!\n> **!rz hora** - Irei lhe informar a hora atual.\n> **!rz limpar** (qt) - Irei limpar o número de mensagem que pedir.\n> **!rz mandar** (id_canal) (msg) - Mandarei sua mensagem no canal escolhido.\n> **!rz piada** - Conto uma piada aleatória sobre Re:Zero.\n> **!rz saudar** - Me apresento.\n> **!rz spam** (qt) (msg) - spamo o que você quiser quantas vezes quiseres.\n> **!rz desbanir** (id_usuário) - Irei desbanir o usuário mencionado pelo id.\n> **!rz kick** (@usuário) - Irei kickar o usuário desse mundo.'''
+
+curiosidades = ['''O elefante é o único animal que não pode pular.''',
+'''O som mais alto já registrado é mais alto que uma bomba atômica.''',
+'''A abelha rainha pode viver até cinco anos, enquanto as abelhas operárias vivem apenas algumas semanas.''',
+'''A palavra "pixel" é uma combinação de "picture" e "element".''',
+'''O olho humano é capaz de distinguir mais de 10 milhões de cores.''',
+'''Os pinguins são pássaros, mas eles não podem voar.''',
+'''O som viaja quatro vezes mais rápido na água do que no ar.''',
+'''O recorde mundial de tempo segurando a respiração é mais de 24 minutos.''',
+'''A Coca-Cola originalmente continha cocaína. A fórmula foi alterada no início do século 20.''',
+'''A girafa tem o mesmo número de vértebras no pescoço que os seres humanos. (Sete vértebras cervicais).''']
 
 exposeds = ['''Descobri que o(a) user ainda tem um travesseiro mágico que ele acredita que lhe dá superpoderes durante o sono. Dizem que ele enfrenta dragões e salva o mundo todas as noites!''',
 '''Gente, o(a) user tem uma playlist ultrassecreta chamada 'Músicas para Dançar no Chuveiro'. Dizem as más línguas que ela tem coreografias elaboradas para cada música!''',
