@@ -7,7 +7,7 @@ import time
 import pytz
 
 from datetime import datetime
-from variaveis import ajuda_descricao, curiosidades, emojis, exposeds, fanfics, piadas, risadas
+from variaveis import ajuda_descricao, curiosidades, emojis, exposeds, fanfics, informacoes, piadas, risadas
 from keep_alive import keep_alive
 keep_alive()
 
@@ -84,6 +84,15 @@ async def hora(ctx:commands.Context):
     
     await ctx.reply(f'Agora são {hora} {pessoa.display_name}.')
 
+@bot.command() #!rz info - O bot irá dar algumas informações.
+async def info(ctx:commands.Context):
+    info = discord.Embed(
+        title='Informações',
+        description=informacoes,
+        colour=11598249
+    )
+    await ctx.reply(embed=info)
+
 @bot.command() #!rz limpar (qt) - O bot irá limpar determinado número de mensagens do chat.
 async def limpar(ctx, quantidade: int):
     # Verificar se o autor da mensagem tem permissão para limpar mensagens
@@ -117,12 +126,12 @@ async def rir(ctx):
     if risada == 'rs':
         await ctx.send(risada*(random.randint(1,3)))
     else:
-        await ctx.send(((risada+(risadas[random.randint(0,len(risadas)-1)]))*(random.randint(1,5))))
+        await ctx.send(((risada+(risadas[random.randint(0,len(risadas)-2)]))*(random.randint(1,5))))
 
 @bot.command() #!rz saudar - O bot irá saudar o usuário.
 async def saudar(ctx):
     user = ctx.author
-    await ctx.reply(f'> Heya {user.display_name}! Aqui é o bot. Retornando pela morte estou aqui para encarar qualquer desafio. A vida é cheia de reviravoltas, mas não se preocupe, estou sempre pronto para recomeçar!')
+    await ctx.reply(f'> Heya {user.display_name}! Aqui é o Barusu. Retornando pela morte estou aqui para encarar qualquer desafio. A vida é cheia de reviravoltas, mas não se preocupe, estou sempre pronto para recomeçar!')
 
 @bot.command() #!rz spam - O bot irá spamar quantas mensagens você quiser no chat.
 async def spam(ctx, qt:int, *, frase):
@@ -174,13 +183,13 @@ async def on_message(pal:discord.Message):
         await pal.reply('Ela quer ser a rainha do humor, mas acho que seu código fonte está mais para uma comédia romântica do que para algum algoritmo eficiente :rofl:.')
     elif 'louco' in msg:
         await pal.reply(':clown:')
-        await pal.send('Louco? Eu já fui louco uma vez, eles me deixaram num quarto, num quarto apertado com ratos, isso me deixou louco, louco?')
+        await pal.reply('Louco? Eu já fui louco uma vez, eles me deixaram num quarto, num quarto apertado com ratos, isso me deixou louco, louco?')
     elif 'bomdia' in frase:
         await pal.reply(f'Bom diaaa! {emoji}')
     elif 'boanoite' in frase:
         await pal.reply(f'Dorme bem.. {emoji}')
     elif 'boatarde' in frase:
-        await pal.reply(f'Boa tarde. {emoji})')
+        await pal.reply(f'Boa tarde. {emoji}')
 
 @bot.event #Quando o bot estiver online irá aparecer no console.
 async def on_ready():
