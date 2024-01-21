@@ -1,4 +1,4 @@
-ajuda_descricao = '''***EVENTOS***\n\n> Quando eu spawnar!\n> Bom dia.\n> Comando não encontrado.\n> Não ouse falar da Rem\n> Boa tarde.\n> Louco??\n> Loritta?Kkkk\n> Boa noite.\n\n ***COMANDOS***\n\n> **!rz ajuda** - Informo todos os comandos.\n> **!rz banir** (@usuário) - Irei expulsar o usuário desse mundo.\n> **!rz curiosidade** - Te contarei uma curiosidade.\n> **!rz dado** (ld) - Irei rolar um dado de quantos lados você quiser!\n> **!rz dia** - Irei lhe informar o dia atual.\n> **!rz diga** (msg) - Envio no chat o que você mandar.\n> **!rz exposed ** (@usuário) - Irei revelar o segredinho do usuário mencionado.\n> **!rz fanfic** - Conto uma fanfic aleatória do servidor!\n> **!rz hora** - Irei lhe informar a hora atual.\n> **!rz kick** (@usuário) - Irei kickar o usuário desse mundo.\n> **!rz limpar** (qt) - Irei limpar o número de mensagem que pedir.\n> **!rz mandar** (id_canal) (msg) - Mandarei sua mensagem no canal escolhido.\n> **!rz piada** - Conto uma piada aleatória sobre Re:Zero.\n> **!rz rir** - Irei rir junto com você.\n> **!rz saudar** - Me apresento.\n> **!rz spam** (qt) (msg) - spamo o que você quiser quantas vezes quiseres.\n> **!rz desbanir** (id_usuário) - Irei desbanir o usuário mencionado pelo id.'''
+ajuda_descricao = '''***EVENTOS***\n\n> Quando eu spawnar!\n> Bom dia.\n> Comando não encontrado.\n> Não ouse falar da Rem\n> Boa tarde.\n> Louco??\n> Loritta?Kkkk\n> Boa noite.\n\n ***COMANDOS***\n\n> **!rz ajuda** - Informo todos os comandos.\n> **!rz banir** (@usuário) - Irei expulsar o usuário desse mundo.\n> **!rz curiosidade** - Te contarei uma curiosidade.\n> **!rz dado** (ld) - Irei rolar um dado de quantos lados você quiser!\n> **!rz dia** - Irei lhe informar o dia atual.\n> **!rz diga** (msg) - Envio no chat o que você mandar.\n> **!rz exposed ** (@usuário) - Irei revelar o segredinho do usuário mencionado.\n> **!rz fanfic** - Conto uma fanfic aleatória do servidor!\n> **!rz hora** - Irei lhe informar a hora atual.\n> **!rz info** -Irei te dizer algumas informações\n> **!rz kick** (@usuário) - Irei kickar o usuário desse mundo.\n> **!rz limpar** (qt) - Irei limpar o número de mensagem que pedir.\n> **!rz mandar** (id_canal) (msg) - Mandarei sua mensagem no canal escolhido.\n> **!rz piada** - Conto uma piada aleatória sobre Re:Zero.\n> **!rz rir** - Irei rir junto com você.\n> **!rz saudar** - Me apresento.\n> **!rz spam** (qt) (msg) - spamo o que você quiser quantas vezes quiseres.\n> **!rz desbanir** (id_usuário) - Irei desbanir o usuário mencionado pelo id.'''
 
 curiosidades = ['''O elefante é o único animal que não pode pular.''',
 '''O som mais alto já registrado é mais alto que uma bomba atômica.''',
@@ -39,6 +39,26 @@ No dia da apresentação, Levir e Kauan surpreenderam os jurados e colegas com u
 A experiência não apenas consolidou uma amizade improvável entre Levir e Kauan, mas também mostrou que, por trás de disciplinas aparentemente distintas, há sempre espaço para a colaboração e a inovação.''',
 '''Ramona havia se acordado de manhã, e foi até a cozinha pegar um suco. Uma voz que ela reconhece fala pra ela por trás dela — Oi gatinha se acordou, quer ovos fritos? *Disse Daniel* Logo após, ela cora, grita e da um tapa em Daniel (ps.: Ele estava sem roupas, apenas de avental de cozinha) Levir se acorda com o grito de daniel — O que caralhos foi isso porra?!''', 
 '''Levir se acordou em mais um dia exaustante de sua vida, deveria ir para a escola em pleno sábado, para ter aula do seu curso de enfermagem. Só iria ele mais 15 alunos dos outros cursos, estava descrente que veria a sua namorada, pois ela mora distante da escola... Ao pisar na sua sala, ele sentiu a brisa fria da sala de aula climatizada, um ar gelado de um ar condicionado, estaria mais ou menos em 15°. Ao sentar na sua cadeira, mãos cobrem a visão do seus olhos: " Adivinha quem é?". Aquela voz era familiar para o menino de estatura baixa. Era uma voz aveludada, macia e meio rouca. Sim, sim, ele certamente conhecia aquela voz. Então, ele pega nas mãos da pessoa que estava com as mãos em seus olhos, estas que estavam meio frias, ele disse: Meu Bem, certeza que é você! Qual é Brenda! Ela tirou as mãos dos olhos de Levir, e então ela diz: "parabéns sua recompensa é um beijo na bochecha." Brenda sutilmente se aproximou do rosto de seu amado e então beijou a bochecha dele, um beijo morno e doce como uma primavera.''']
+
+informacoes = '''> Heyyyy! Eu sou Natsuki Subaru, o viajante perdido neste novo mundo! :earth_americas::sparkles:
+
+ℹ️ Informações sobre Mim:
+
+- **Versão do Barusu:** Beta
+- **Desenvolvedor:** the_xarl
+- **Data de "Chegada" Aqui:** sla 
+- **Prefixo do Comando:** !rz
+
+🌟 Funções Principais:
+
+1. `!rz ajuda` - Mostra todos os comandos disponíveis.
+2. `!rz banir` - Bano os usuários em nome de Emilia.
+3. `!rz diga` - Mando o que você quiser no chat.
+
+👉 Como Contribuir:
+- Se quiser ajudar, envie sugestões e relatos de bugs para o email jcrxl20@gmail.com, além de poder ajudar contribuindo com um pix na seguinte chave: 8897483734.
+
+*Espero que possamos nos divertir juntos!*'''
 
 piadas = ['''Por que o Subaru não consegue encontrar o Rem? Porque ele sempre dá "um passo para a frente" e dois "para trás" no tempo!''',
 '''Qual é o personagem favorito do Subaru em Re:Zero? O Controle Remoto!''',
