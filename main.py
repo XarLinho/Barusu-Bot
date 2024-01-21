@@ -7,7 +7,7 @@ import time
 import pytz
 
 from datetime import datetime
-from variaveis import ajuda_descricao, curiosidades, exposeds, fanfics, piadas, risadas
+from variaveis import ajuda_descricao, curiosidades, emojis, exposeds, fanfics, piadas, risadas
 from keep_alive import keep_alive
 keep_alive()
 
@@ -112,11 +112,12 @@ async def piada(ctx):
 
 @bot.command() #!rz rir - O bot irá rir junto com você.
 async def rir(ctx):
+    await ctx.message.delete()
     risada = random.choice(risadas)
     if risada == 'rs':
         await ctx.send(risada*(random.randint(1,3)))
     else:
-        await ctx.send((risada+(risadas[random.randint(0,len(risadas)-1)])*(random.randint(1,5))))
+        await ctx.send(((risada+(risadas[random.randint(0,len(risadas)-1)]))*(random.randint(1,5))))
 
 @bot.command() #!rz saudar - O bot irá saudar o usuário.
 async def saudar(ctx):
@@ -158,6 +159,7 @@ async def kick(ctx:commands.Context, user:discord.Member):
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
 async def on_message(pal:discord.Message):
     await bot.process_commands(pal) #processar se a mensagem era algum comando.
+    emoji = random.choice(emojis)
 
     #tratamento da mensagem.
     msg = pal.content.lower() #toda minúscula
@@ -174,11 +176,11 @@ async def on_message(pal:discord.Message):
         await pal.reply(':clown:')
         await pal.send('Louco? Eu já fui louco uma vez, eles me deixaram num quarto, num quarto apertado com ratos, isso me deixou louco, louco?')
     elif 'bomdia' in frase:
-        await pal.reply('Bom diaaa! :grin:')
+        await pal.reply(f'Bom diaaa! {emoji}')
     elif 'boanoite' in frase:
-        await pal.reply('Dorme bem.:smiling_face_with_3_hearts:')
+        await pal.reply(f'Dorme bem.. {emoji}')
     elif 'boatarde' in frase:
-        await pal.reply('Boa tarde... ;)')
+        await pal.reply(f'Boa tarde. {emoji})')
 
 @bot.event #Quando o bot estiver online irá aparecer no console.
 async def on_ready():
