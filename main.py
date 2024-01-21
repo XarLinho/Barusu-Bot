@@ -7,7 +7,7 @@ import time
 import pytz
 
 from datetime import datetime
-from variaveis import ajuda_descricao, curiosidades, exposeds, fanfics, piadas
+from variaveis import ajuda_descricao, curiosidades, exposeds, fanfics, piadas, risadas
 from keep_alive import keep_alive
 keep_alive()
 
@@ -110,7 +110,15 @@ async def piada(ctx):
     piada = random.choice(piadas)
     await ctx.reply(piada)
 
-@bot.command() #!rz saudação - O bot irá saudar o usuário.
+@bot.command() #!rz rir - O bot irá rir junto com você.
+async def rir(ctx):
+    risada = random.choice(risadas)
+    if risada == 'rs':
+        await ctx.send(risada*(random.randint(1,3)))
+    else:
+        await ctx.send((risada+(risadas[random.randint(0,len(risadas)-1)])*(random.randint(1,5))))
+
+@bot.command() #!rz saudar - O bot irá saudar o usuário.
 async def saudar(ctx):
     user = ctx.author
     await ctx.reply(f'> Heya {user.display_name}! Aqui é o bot. Retornando pela morte estou aqui para encarar qualquer desafio. A vida é cheia de reviravoltas, mas não se preocupe, estou sempre pronto para recomeçar!')
@@ -162,16 +170,21 @@ async def on_message(pal:discord.Message):
         await pal.reply('REM??????')
     elif 'loritta' in msg:
         await pal.reply('Ela quer ser a rainha do humor, mas acho que seu código fonte está mais para uma comédia romântica do que para algum algoritmo eficiente :rofl:.')
+    elif 'louco' in msg:
+        await pal.reply(':clown:')
+        await pal.send('Louco? Eu já fui louco uma vez, eles me deixaram num quarto, num quarto apertado com ratos, isso me deixou louco, louco?')
     elif 'bomdia' in frase:
-        await pal.reply('Bom diaaa!')
+        await pal.reply('Bom diaaa! :grin:')
     elif 'boanoite' in frase:
-        await pal.reply('Dorme bem.')
+        await pal.reply('Dorme bem.:smiling_face_with_3_hearts:')
+    elif 'boatarde' in frase:
+        await pal.reply('Boa tarde... ;)')
 
 @bot.event #Quando o bot estiver online irá aparecer no console.
 async def on_ready():
     print(f'{bot.user} está online!')
-    #canal = bot.get_channel(757649361248190546)
-    #await canal.send('Spawnpoint!')
+    canal = bot.get_channel(757649361248190546)
+    await canal.send('Spawnpoint!')
 
 @bot.event #Quando o usuário digitar um comando errado o bot vai lhe informar e lhe sugerir que utilize o comando de ajuda.
 async def on_command_error(ctx, error):
