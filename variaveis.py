@@ -30,7 +30,7 @@ ajuda_descricao = '''***`EVENTOS`***\n
 > **!rz saudar** - Me apresento.
 > **!rz spam** (qt) (msg) - Spamo o que você quiser quantas vezes quiseres.
 > **!rz total_membros** - Irei te informar quantos membros tem esse mundo.
-> **!rz versiculo - Irei citar uma passagem da Bíblia Sagrada.'''
+> **!rz versiculo** - Irei citar uma passagem da Bíblia Sagrada.'''
 
 curiosidades = ['''O elefante é o único animal que não pode pular.''',
 '''O som mais alto já registrado é mais alto que uma bomba atômica.''',
