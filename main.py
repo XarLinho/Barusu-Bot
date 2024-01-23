@@ -122,7 +122,7 @@ async def hora(ctx:commands.Context):
     await ctx.reply(f'Agora são {hora} {pessoa.display_name}.')
 
 @bot.command() #!rz info - O bot irá dar algumas informações.
-async def info(ctx:commands.Context):
+async def info(ctx):
     info = discord.Embed(
         title='Informações',
         description=informacoes,
@@ -133,8 +133,10 @@ async def info(ctx:commands.Context):
 @bot.command() #!rz julgar (@usuário) (motivo) - O bot iniciará um julgamento no servidor. 
 async def julgar(ctx, user:discord.Member, *, motivo):
     embed = discord.Embed(title=f'INCIANDO JULGAMENTO',
-    description=f'**Réu:**  {user}\n**Motivo:**     {motivo}.\n**Juiz:**   {ctx.author}',
+    description=f'**Réu:** {user}\n**Motivo:** {motivo}.\n**Juiz:** {ctx.author}',
     color=discord.Color.green())
+
+    await ctx.reply(embed=embed)
 
 @bot.command() #!rz total_membros - O bot informará quantos membros tem no servidor.
 async def total_membros(ctx):
