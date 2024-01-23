@@ -1,13 +1,10 @@
 #IMPORTAR BIBLIOTECAS E RECURSOS
-import discord
+import discord, giphy_client, pytz, random, requests
+
 from discord.ext import commands
-import giphy_client
 from giphy_client.rest import ApiException
-
-import random
-import time
-import pytz
-
+from faker import Faker
+from bs4 import BeautifulSoup
 from datetime import datetime
 from variaveis import ajuda_descricao, curiosidades, emojis, exposeds, fanfics, informacoes, piadas, risadas
 from keep_alive import keep_alive
@@ -30,8 +27,7 @@ async def ajuda(ctx):
     comandos = discord.Embed(
         title = "*Heya!!* Meus Spawnpoint's:",
         description = ajuda_descricao,
-        colour = 11598249
-    )    
+        color = discord.Color.green())    
     await ctx.reply(embed=comandos)
 
 @bot.command() #!rz banir (@usuário) - O bot irá banir o usuário mencionado.
@@ -136,14 +132,7 @@ async def julgar(ctx, user:discord.Member, *, motivo):
     description=f'**Réu:** {user}\n**Motivo:** {motivo}.\n**Juiz:** {ctx.author}',
     color=discord.Color.green())
 
-    await ctx.reply(embed=embed)
-
-@bot.command() #!rz total_membros - O bot informará quantos membros tem no servidor.
-async def total_membros(ctx):
-    servidor = ctx.guild
-    total_membros = servidor.member_count
-    nome_servidor = servidor.name
-    await ctx.send(f'O Mundo {nome_servidor} tem {total_membros} pessoas.')    
+    await ctx.reply(embed=embed)  
 
 @bot.command() #!rz kick (@usuário) - O bot irá kickar o usuário mencionado.
 async def kick(ctx:commands.Context, user:discord.Member):
@@ -175,6 +164,15 @@ async def mandar(ctx, id_canal:int, *, fala):
         return
     await canal.send(fala)
 
+@bot.command() #!bk nome - O bot irá gerar um nome aleatório.
+async def nome(ctx):
+    try: 
+        fake = Faker('pt_BR')
+        nome = fake.name()
+        await ctx.reply(f'{nome} é um ótimo nome!')
+    except Exception as e:
+        print(f'Erro ao executar o comando {e}')
+
 @bot.command() #!rz piada - O bot irá contar uma piada aleatória sobre Re:Zero.
 async def piada(ctx):
     piada = random.choice(piadas)
@@ -200,6 +198,70 @@ async def spam(ctx, qt:int, *, frase):
     await ctx.message.delete()
     for i in range(qt):
         await ctx.send(frase)
+
+@bot.command() #!rz total_membros - O bot informará quantos membros tem no servidor.
+async def total_membros(ctx):
+    servidor = ctx.guild
+    total_membros = servidor.member_count
+    nome_servidor = servidor.name
+    await ctx.send(f'O Mundo {nome_servidor} tem {total_membros} pessoas.')  
+
+@bot.command() #!rz versiculo - O bot irá mandar uma passagem da biblia.
+async def versiculo(ctx):
+    async with ctx.channel.typing():
+
+        lb = [
+            # Abreviação dos livros do AT
+            'GN', 'EX', 'LV', 'NM', 'DT', 'JS', 'JZ', 'RT', '1SM', '2SM', '1RS',
+            '2RS', '1CR', '2CR', 'ED', 'NE', 'ET', 'JÓ', 'SL', 'PV', 'EC', 'CT', 'IS', 'JR',
+            'LM', 'EZ', 'DN', 'OS', 'JL', 'AM', 'OB', 'JN', 'MQ', 'NA', 'HC', 'SF', 'AG', 'ZC', 'ML',
+            # Abreviação dos livros do NT
+            'MT', 'MC', 'LC', 'JO', 'AT', 'RM', '1CO', '2CO', 'GL', 'EF', 'FP', 'CL', '1TS', '2TS',
+            '1TM', '2TM', 'TT', 'FM', 'HB', 'TG', '1PE', '2PE', '1JO', '2JO', '3JO', 'JD', 'AP'
+        ]
+
+        teste = 0
+
+        while teste == 0:
+
+            try:
+                livro = random.choice(lb)
+
+                if livro == 'SL':
+                    cap = random.choice(1,150)
+                elif livro == 'IS':
+                    cap = random.choice(1,66)
+                elif livro == 'JR':
+                    cap = random.choice(1,52)
+                elif livro == 'GN':
+                    cap = random.choice(1,50)
+                else:
+                    cap = random.randint(1,42)
+                if livro == 'SL' and cap == 119:
+                    ver = random.randint(1,176)
+                elif livro == 'NM' and cap == 7:
+                    ver = random.randint(1,89)
+                elif livro == 'LC' and cap == 1:
+                    ver = random.randint(1,80)
+                else:
+                    ver = random.randint(1,60)
+                    
+                response = requests.get(f'https://www.bibliaonline.com.br/TB/{livro}/{cap}/{ver}')
+                
+                if response.status_code == 200:
+                    print(response.text)  # Imprime o HTML da página para inspeção
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    versiculo_texto = soup.find('div', class_='verseByVerse css-188hggs')  # Altere para a classe real que contém o texto do versículo
+                    if versiculo_texto:
+                        embed = discord.Embed(
+                            title=f'**Biblia Sagrada** - {livro} {cap}:{ver}\n',
+                            description=f'`{versiculo_texto.get_text()}`',
+                            color=discord.Color.green())
+                        await ctx.reply(embed=embed)
+                        teste = 1
+
+            except Exception as e:
+                print(f'Erro ao executar o comando: {e}')
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
