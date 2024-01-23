@@ -1,4 +1,33 @@
-ajuda_descricao = '''***EVENTOS***\n\n> Quando eu spawnar!\n> Bom dia.\n> Comando não encontrado.\n> Não ouse falar da Rem\n> Boa tarde.\n> Louco??\n> Loritta?Kkkk\n> Boa noite.\n\n ***COMANDOS***\n\n> **!rz ajuda** - Informo todos os comandos.\n> **!rz banir** (@usuário) - Irei expulsar o usuário desse mundo.\n> **!rz curiosidade** - Te contarei uma curiosidade.\n> **!rz dado** (ld) - Irei rolar um dado de quantos lados você quiser!\n> **!rz desbanir** (id_usuário) - Irei desbanir o usuário mencionado pelo id.\n> **!rz dia** - Irei lhe informar o dia atual.\n> **!rz diga** (msg) - Envio no chat o que você mandar.\n> **!rz exposed ** (@usuário) - Irei revelar o segredinho do usuário mencionado.\n> **!rz fanfic** - Conto uma fanfic aleatória do servidor!\n> **!rz gif** (termo) - Irei mandar um gif relacionado ao termo inserido.**\n> **!rz hora** - Irei lhe informar a hora atual.\n> **!rz info** -Irei te dizer algumas informações\n> **!rz julgar (usuário) (motivo) - Irei dar início a um novo julgamento.**\n>**!rz kick** (@usuário) - Irei kickar o usuário desse mundo.\n> **!rz limpar** (qt) - Irei limpar o número de mensagem que pedir.\n> **!rz mandar** (id_canal) (msg) - Mandarei sua mensagem no canal escolhido.\n> **!rz piada** - Conto uma piada aleatória sobre Re:Zero.\n> **!rz rir** - Irei rir junto com você.\n> **!rz saudar** - Me apresento.\n> **!rz spam** (qt) (msg) - spamo o que você quiser quantas vezes quiseres.\n> **!rz total_membros** - Irei te informar quantos membros tem esse mundo.'''
+ajuda_descricao = '''***EVENTOS***\n\n> 
+Quando eu spawnar!\n
+> Bom dia.\n
+> Comando não encontrado.\n
+> Não ouse falar da Rem\n
+> Boa tarde.\n
+> Louco??\n
+> Loritta?Kkkk\n
+> Boa noite.\n\n
+***COMANDOS***\n\n
+> **!rz ajuda** - 'Informo todos os comandos.'\n
+> **!rz banir** (@usuário) - 'Irei expulsar o usuário desse mundo.'\n
+> **!rz curiosidade** - 'Te contarei uma curiosidade.'\n
+> **!rz dado** (ld) - 'Irei rolar um dado de quantos lados você quiser!'\n
+> **!rz desbanir** (id_usuário) - 'Irei desbanir o usuário mencionado pelo id.'\n
+> **!rz dia** - 'Irei lhe informar o dia atual.'\n
+> **!rz diga** (msg) - 'Envio no chat o que você mandar.'\n
+> **!rz exposed** (@usuário) - 'Irei revelar o segredinho do usuário mencionado.'\n
+> **!rz fanfic** - 'Conto uma fanfic aleatória do servidor!'\n
+> **!rz gif** (termo) - 'Irei mandar um gif relacionado ao termo inserido.'\n
+> **!rz hora** - 'Irei lhe informar a hora atual.'\n
+> **!rz info** - 'Irei te dizer algumas informações.'\n
+> **!rz julgar** (@usuário) (motivo) - 'Irei dar início a um novo julgamento.'\n
+> **!rz kick** (@usuário) - 'Irei kickar o usuário desse mundo.'\n
+> **!rz limpar** (qt) - 'Irei limpar o número de mensagem que pedir.'\n
+> **!rz mandar** (id_canal) (msg) - 'Mandarei sua mensagem no canal escolhido.'\n
+> **!rz piada** - 'Conto uma piada aleatória sobre Re:Zero.\n> **!rz rir** - Irei rir junto com você.'\n
+> **!rz saudar** - 'Me apresento.'\n
+> **!rz spam** (qt) (msg) - 'Spamo o que você quiser quantas vezes quiseres.'\n
+> **!rz total_membros** - 'Irei te informar quantos membros tem esse mundo.'\n'''
 
 curiosidades = ['''O elefante é o único animal que não pode pular.''',
 '''O som mais alto já registrado é mais alto que uma bomba atômica.''',
