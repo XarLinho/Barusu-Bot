@@ -1,6 +1,8 @@
 #IMPORTAR BIBLIOTECAS E RECURSOS
 import discord
 from discord.ext import commands
+import giphy_client
+from giphy_client.rest import ApiException
 
 import random
 import time
@@ -19,6 +21,8 @@ intents.message_content = True
 intents.members = True
 bot = commands.Bot(command_prefix='!rz ', intents=intents)
 TOKEN = os.environ['TOKEN']
+api_key = os.environ['API_GIPHY']
+api_instance = giphy_client.DefaultApi()
 
 #COMANDOS
 @bot.command() #!rz ajuda - O bot irá informar ao usuário os comandos que ele atende.
@@ -49,6 +53,21 @@ async def dado(ctx, ld:int):
     lado = random.randint(1,ld)
     await ctx.reply(f'Caiu no {lado}!')
 
+@bot.command() #!rz desbanir (id_user) - O bot irá desbanir o usuário.
+async def desbanir(ctx, member_id:int):
+    usuarios_banidos = []
+    async for ban_entry in ctx.guild.bans():
+        usuarios_banidos.append(ban_entry.user)
+
+    # Agora você pode trabalhar com a lista de usuários banidos
+    user_to_unban = discord.utils.get(usuarios_banidos, id=int(member_id))
+
+    if user_to_unban:
+        await ctx.guild.unban(user_to_unban)
+        await ctx.send(f'O membro {user_to_unban.mention} foi desbanido! Em nome de Emilia, a justiça foi feita.')
+    else:
+        await ctx.send('Membro não encontrado na lista de banidos.')
+
 @bot.command() #!rz dia - O bot irá lhe informar que dia é hoje.
 async def dia(ctx):
     pessoa = ctx.author
@@ -74,6 +93,24 @@ async def fanfic(ctx):
     fanfic = random.choice(fanfics)
     await ctx.reply(fanfic)
 
+@bot.command() #!rz gif (termo) - O bot enviará um gif relacionado ao termo mencionado.
+async def gif(ctx, *, termo):
+    embed = discord.Embed(title=f'Gif relacionado a "{termo}":', color=discord.Color.green())
+    try:
+        # Pesquisar gif no Giphy
+        response = api_instance.gifs_search_get(api_key, termo, limit=1)
+        
+        # Obter a URL do gif
+        gif_url = response.data[0].images.fixed_height.url
+
+        # Enviar a URL do gif no canal do Discord
+        embed.set_image(url=gif_url)
+        await ctx.reply(embed=embed)
+
+    except ApiException as e:
+        print(f"Erro ao buscar gif: {e}")
+        await ctx.send(f"Ocorreu um erro ao buscar o gif relacionado a '{termo}'.")
+
 @bot.command() #!rz hora - O bot irá informar a hora atual.
 async def hora(ctx:commands.Context):
     pessoa = ctx.author
@@ -92,6 +129,28 @@ async def info(ctx:commands.Context):
         colour=11598249
     )
     await ctx.reply(embed=info)
+
+@bot.command() #!rz julgar (@usuário) (motivo) - O bot iniciará um julgamento no servidor. 
+async def julgar(ctx, user:discord.Member, *, motivo):
+    embed = discord.Embed(title=f'INCIANDO JULGAMENTO',
+    description=f'**Réu:**  {user}\n**Motivo:**     {motivo}.\n**Juiz:**   {ctx.author}',
+    color=discord.Color.green())
+
+@bot.command() #!rz total_membros - O bot informará quantos membros tem no servidor.
+async def total_membros(ctx):
+    servidor = ctx.guild
+    total_membros = servidor.member_count
+    nome_servidor = servidor.name
+    await ctx.send(f'O Mundo {nome_servidor} tem {total_membros} pessoas.')    
+
+@bot.command() #!rz kick (@usuário) - O bot irá kickar o usuário mencionado.
+async def kick(ctx:commands.Context, user:discord.Member):
+    autor = ctx.author
+    if ctx.message.author.guild_permissions.ban_members:
+        await ctx.guild.ban(user)
+        await ctx.reply(f'O/A {user.display_name} foi kickado(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
+    else:
+        await ctx.reply(f'{autor} pare de tentar kickar as pessoas! Caso contrário o próximo será você..')
 
 @bot.command() #!rz limpar (qt) - O bot irá limpar determinado número de mensagens do chat.
 async def limpar(ctx, quantidade: int):
@@ -139,30 +198,6 @@ async def spam(ctx, qt:int, *, frase):
     await ctx.message.delete()
     for i in range(qt):
         await ctx.send(frase)
-
-@bot.command() #!rz desbanir (id_user) - O bot irá desbanir o usuário.
-async def desbanir(ctx, member_id:int):
-    usuarios_banidos = []
-    async for ban_entry in ctx.guild.bans():
-        usuarios_banidos.append(ban_entry.user)
-
-    # Agora você pode trabalhar com a lista de usuários banidos
-    user_to_unban = discord.utils.get(usuarios_banidos, id=int(member_id))
-
-    if user_to_unban:
-        await ctx.guild.unban(user_to_unban)
-        await ctx.send(f'O membro {user_to_unban.mention} foi desbanido! Em nome de Emilia, a justiça foi feita.')
-    else:
-        await ctx.send('Membro não encontrado na lista de banidos.')
-
-@bot.command() #!rz kick (@usuário) - O bot irá kickar o usuário mencionado.
-async def kick(ctx:commands.Context, user:discord.Member):
-    autor = ctx.author
-    if ctx.message.author.guild_permissions.ban_members:
-        await ctx.guild.ban(user)
-        await ctx.reply(f'O/A {user.display_name} foi kickado(a) desse mundo! Parece que suas ações romperam os laços do espaço-tempo, e agora estão proibidos de interagir em nosso universo.')
-    else:
-        await ctx.reply(f'{autor} pare de tentar kickar as pessoas! Caso contrário o próximo será você..')
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
