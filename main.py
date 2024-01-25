@@ -72,7 +72,7 @@ async def dia(ctx):
     data_hora_brasil = datetime.now(fuso_horario_brasil)
     dia = data_hora_brasil.strftime('%d/%m/%Y')
     
-    await ctx.reply(f'Hoje é {dia} {pessoa.display_name}.')
+    await ctx.reply(f'Hoje é {dia} {pessoa.mention}.')
 
 @bot.command() #!rz diga (mensagem) - O bot vai repetir o que o user pediu e apagar a msg original.
 async def diga(ctx, *, msg):
@@ -81,7 +81,7 @@ async def diga(ctx, *, msg):
 
 @bot.command() #!rz exposed - O bot vai lhe informar o motivo de seu exposed.
 async def exposed(ctx, pessoa:discord.Member):
-    exposed = random.choice(exposeds).replace('user', pessoa.display_name)
+    exposed = random.choice(exposeds).replace('user', pessoa.mention)
     await ctx.reply(exposed)
 
 @bot.command() #!rz fanfic - O bot irá contar um fanfic aleatória do servidor.
@@ -115,7 +115,7 @@ async def hora(ctx:commands.Context):
     data_hora_brasil = datetime.now(fuso_horario_brasil)
     hora = data_hora_brasil.strftime('%H:%M:%S')
     
-    await ctx.reply(f'Agora são {hora} {pessoa.display_name}.')
+    await ctx.reply(f'Agora são {hora} {pessoa.mention}.')
 
 @bot.command() #!rz info - O bot irá dar algumas informações.
 async def info(ctx):
@@ -266,10 +266,54 @@ async def versiculo(ctx):
 
 @bot.command() #!rz xingar (@usuário)- O bot irá xingar o usuário mencionado
 async def xingar(ctx, user:discord.Member):
-    usuario = user.display_name
     xingamento = random.choice(xingamentos)
-    frase = [f'O(a) {usuario} é um(a) {xingamento}',f'{usuario}, seu {xingamento}!']
+    frase = [f'O(a) {user.mention} é um(a) {xingamento}',f'{user.mention}, seu {xingamento}!']
     await ctx.reply(random.choice(frase))
+
+@bot.command() #!rz wiki (termo) - O boto vai pesquisar na wikipedia o que o usuário pedir.
+async def wiki(ctx: commands.Context, *, termo):
+    async with ctx.channel.typing():
+        try:
+            artigo = termo.replace(" ", "_")
+            response = requests.get(f'https://pt.wikipedia.org/wiki/{artigo}')
+
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                wikipedia = soup.find('div', class_='mw-content-ltr mw-parser-output')
+                
+                if wikipedia:
+                    # Encontra o primeiro parágrafo que contém informações sobre o termo
+                    primeiro_paragrafo = wikipedia.find('p', recursive=False)
+
+                    texto_principal = ''
+                    if primeiro_paragrafo:
+                        # Remove as tags <sup> (superescrito) do texto
+                        for sup in primeiro_paragrafo.find_all('sup'):
+                            sup.extract()  # Remove a tag <sup> e seu conteúdo
+
+                        texto_principal += primeiro_paragrafo.get_text().strip() + '\n\n'
+
+                        # Verifica se há uma lista não ordenada (<ul>) imediatamente após o primeiro parágrafo
+                        ul = primeiro_paragrafo.find_next_sibling('ul')
+                        if ul:
+                            # Adiciona o conteúdo da lista não ordenada ao texto principal
+                            texto_principal += '\n'.join([li.text.strip() for li in ul.find_all('li')]) + '\n\n'
+
+                        embed = discord.Embed(
+                            title=f'{termo} na Wiki:',
+                            description=texto_principal[:2000],
+                            color=discord.Color.green())
+                        embed.set_footer(text=f'fonte: https://pt.wikipedia.org/wiki/{artigo}')
+
+                        await ctx.reply(embed=embed)
+                    else:
+                        await ctx.reply(f'A Wikipédia não possui um artigo com este nome **exato**. Por favor, procure por `{artigo}` na Wikipédia para buscar por títulos alternativos. ')
+                else:
+                    await ctx.reply(f'A Wikipédia não possui um artigo com este nome **exato**. Por favor, procure por `{artigo}` na Wikipédia para buscar por títulos alternativos. ')
+            else:
+                await ctx.reply(f'A Wikipédia não possui um artigo com este nome **exato**. Por favor, procure por `{artigo}` na Wikipédia para buscar por títulos alternativos. ')
+        except Exception as e:
+            print(f'Ocorreu um erro no comando: {e}')
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
