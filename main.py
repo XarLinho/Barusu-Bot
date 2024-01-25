@@ -6,7 +6,7 @@ from giphy_client.rest import ApiException
 from faker import Faker
 from bs4 import BeautifulSoup
 from datetime import datetime
-from variaveis import ajuda_descricao, curiosidades, emojis, exposeds, fanfics, informacoes, piadas, risadas
+from variaveis import ajuda_descricao, curiosidades, emojis, exposeds, fanfics, informacoes, piadas, risadas, xingamentos
 from keep_alive import keep_alive
 keep_alive()
 
@@ -262,6 +262,14 @@ async def versiculo(ctx):
 
             except Exception as e:
                 print(f'Erro ao executar o comando: {e}')
+
+
+@bot.command() #!rz xingar (@usuário)- O bot irá xingar o usuário mencionado
+async def xingar(ctx, user:discord.Member):
+    usuario = user.display_name
+    xingamento = random.choice(xingamentos)
+    frase = [f'O(a) {usuario} é um(a) {xingamento}',f'{usuario}, seu {xingamento}!']
+    await ctx.reply(frase)
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
