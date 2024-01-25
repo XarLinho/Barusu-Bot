@@ -30,7 +30,8 @@ ajuda_descricao = '''***`EVENTOS`***\n
 > **!rz saudar** - Me apresento.
 > **!rz spam** (qt) (msg) - Spamo o que você quiser quantas vezes quiseres.
 > **!rz total_membros** - Irei te informar quantos membros tem esse mundo.
-> **!rz versiculo** - Irei citar uma passagem da Bíblia Sagrada.'''
+> **!rz versiculo** - Irei citar uma passagem da Bíblia Sagrada.
+> **!rz xingar** (@usuário) - Irei xingar o usuário mencionado!'''
 
 curiosidades = ['''O elefante é o único animal que não pode pular.''',
 '''O som mais alto já registrado é mais alto que uma bomba atômica.''',
@@ -103,3 +104,7 @@ piadas = ['''Por que o Subaru não consegue encontrar o Rem? Porque ele sempre d
 '''Como o Subaru conserta seus problemas? Ele dá um "Ctrl + Z" na situação e espera que tudo melhore!''']
 
 risadas = ['ka', 'kk', 'ks', 'rs']
+
+xingamentos = ['''filho de uma égua''', '''corno''', '''cadela''', '''arrombado''', '''mongol''',
+'''calabreso''', '''tilápio''', '''bosta''', '''jumento''', '''merda''', '''idiota''', '''otário''',
+'''carioca''', '''bolsominion''', '''petista''']
