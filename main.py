@@ -269,7 +269,7 @@ async def xingar(ctx, user:discord.Member):
     usuario = user.display_name
     xingamento = random.choice(xingamentos)
     frase = [f'O(a) {usuario} é um(a) {xingamento}',f'{usuario}, seu {xingamento}!']
-    await ctx.reply(frase)
+    await ctx.reply(random.choice(frase))
 
 #EVENTOS
 @bot.event #Quando alguem escrever uma mensagem que contenha a palavra rem o usuário o responde.
