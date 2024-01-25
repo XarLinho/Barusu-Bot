@@ -31,7 +31,8 @@ ajuda_descricao = '''***`EVENTOS`***\n
 > **!rz spam** (qt) (msg) - Spamo o que você quiser quantas vezes quiseres.
 > **!rz total_membros** - Irei te informar quantos membros tem esse mundo.
 > **!rz versiculo** - Irei citar uma passagem da Bíblia Sagrada.
-> **!rz xingar** (@usuário) - Irei xingar o usuário mencionado!'''
+> **!rz xingar** (@usuário) - Irei xingar o usuário mencionado!
+> **!rz wiki** (termo) - Irei pesquisar o que você pedir na Wikipédia.'''
 
 curiosidades = ['''O elefante é o único animal que não pode pular.''',
 '''O som mais alto já registrado é mais alto que uma bomba atômica.''',
