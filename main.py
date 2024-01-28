@@ -315,8 +315,8 @@ async def on_message(pal:discord.Message):
     emoji = random.choice(emojis)
 
     #tratamento da mensagem.
-    msg = pal.content.lower() #toda minúscula
-    frase = msg.replace(" ", "") #sem espaços
+    frase = pal.content.lower() #toda minúscula
+    msg = frase.replace(" ", "") #sem espaços
 
     #condições
     if pal.author == bot.user:
@@ -328,11 +328,11 @@ async def on_message(pal:discord.Message):
     elif 'louco' in msg:
         await pal.reply(':clown:')
         await pal.reply('Louco? Eu já fui louco uma vez, eles me deixaram num quarto, num quarto apertado com ratos, isso me deixou louco, louco?')
-    elif 'bomdia' in frase:
+    elif 'bomdia' in msg:
         await pal.reply(f'Bom diaaa! {emoji}')
-    elif 'boanoite' in frase:
+    elif 'boanoite' in msg:
         await pal.reply(f'Dorme bem.. {emoji}')
-    elif 'boatarde' in frase:
+    elif 'boatarde' in msg:
         await pal.reply(f'Boa tarde. {emoji}')
 
 @bot.event #Quando o bot estiver online irá aparecer no console.
