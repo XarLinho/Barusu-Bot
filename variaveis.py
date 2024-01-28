@@ -28,7 +28,6 @@ ajuda_descricao = '''***`EVENTOS`***\n
 > **!rz piada** - Conto uma piada aleatória sobre Re:Zero.
 > **!rz rir** - Irei rir junto com você.
 > **!rz saudar** - Me apresento.
-> **!rz spam** (qt) (msg) - Spamo o que você quiser quantas vezes quiseres.
 > **!rz total_membros** - Irei te informar quantos membros tem esse mundo.
 > **!rz versiculo** - Irei citar uma passagem da Bíblia Sagrada.
 > **!rz xingar** (@usuário) - Irei xingar o usuário mencionado!
@@ -87,7 +86,9 @@ informacoes = '''> Heyyyy! Eu sou Natsuki Subaru, o viajante perdido neste novo 
 
 1. `!rz ajuda` - Mostra todos os comandos disponíveis.
 2. `!rz banir` - Bano os usuários em nome de Emilia.
-3. `!rz diga` - Mando o que você quiser no chat.
+3. `!rz gif` - Mando um gif no chat.
+4. `!rz versiculo' - Mando um versículo da Bíblia.
+5. `!rz wiki` - Faça uma pesquisa na Wikipedia.
 
 👉 Como Contribuir:
 - Se quiser ajudar, envie sugestões e relatos de bugs para o email jcrxl20@gmail.com, além de poder ajudar contribuindo com um pix na seguinte chave: 8897483734.
