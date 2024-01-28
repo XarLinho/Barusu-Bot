@@ -190,7 +190,7 @@ async def rir(ctx):
 @bot.command() #!rz saudar - O bot irá saudar o usuário.
 async def saudar(ctx):
     user = ctx.author
-    await ctx.reply(f'> Heya {user.display_name}! Aqui é o Barusu. Retornando pela morte estou aqui para encarar qualquer desafio. A vida é cheia de reviravoltas, mas não se preocupe, estou sempre pronto para recomeçar!')
+    await ctx.reply(f'> Heya {user.mention}! Aqui é o Barusu. Retornando pela morte estou aqui para encarar qualquer desafio. A vida é cheia de reviravoltas, mas não se preocupe, estou sempre pronto para recomeçar!')
 
 @bot.command() #!rz total_membros - O bot informará quantos membros tem no servidor.
 async def total_membros(ctx):
@@ -326,7 +326,6 @@ async def on_message(pal:discord.Message):
     elif 'loritta' in msg:
         await pal.reply('Ela quer ser a rainha do humor, mas acho que seu código fonte está mais para uma comédia romântica do que para algum algoritmo eficiente :rofl:.')
     elif 'louco' in msg:
-        await pal.reply(':clown:')
         await pal.reply('Louco? Eu já fui louco uma vez, eles me deixaram num quarto, num quarto apertado com ratos, isso me deixou louco, louco?')
     elif 'bomdia' in msg:
         await pal.reply(f'Bom diaaa! {emoji}')
