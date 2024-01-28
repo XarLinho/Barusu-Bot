@@ -193,14 +193,11 @@ async def saudar(ctx):
     await ctx.reply(f'> Heya {user.display_name}! Aqui é o Barusu. Retornando pela morte estou aqui para encarar qualquer desafio. A vida é cheia de reviravoltas, mas não se preocupe, estou sempre pronto para recomeçar!')
 
 @bot.command() #!rz spam - O bot irá spamar quantas mensagens você quiser no chat.
-async def spam(ctx:commands.Context, qt:int, *, frase):
+async def spam(ctx, qt:int, *, frase):
     i = 0
-    if ctx.message.author.guild_permissions.administrator:
-        await ctx.message.delete()
-        for i in range(qt):
-            await ctx.send(frase)
-    else:
-        await ctx.reply('Ei, ei, ei.. não tente ser como o @usermarinho! ')
+    await ctx.message.delete()
+    for i in range(qt):
+        await ctx.send(frase)
 
 @bot.command() #!rz total_membros - O bot informará quantos membros tem no servidor.
 async def total_membros(ctx):
