@@ -155,14 +155,14 @@ async def limpar(ctx, quantidade: int):
         # Se o autor não tiver permissões adequadas, enviar uma mensagem de aviso
         await ctx.send("Você não tem permissão para limpar mensagens.")
 
-@bot.command() #!rz mandar (id_canal) (fala) - O bot irá mandar o que você disse no canal escolhido.
-async def mandar(ctx, id_canal:int, *, fala):
+@bot.command() #!rz mandar (id_canal) (msg) - O bot irá mandar o que você disse no canal escolhido.
+async def mandar(ctx, id_canal:int, *, msg):
     canal = bot.get_channel(id_canal)
 
     if canal is None:
         await ctx.send('Canal não encontrado!')
         return
-    await canal.send(fala)
+    await canal.send(msg)
 
 @bot.command() #!bk nome - O bot irá gerar um nome aleatório.
 async def nome(ctx):
