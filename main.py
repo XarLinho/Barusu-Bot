@@ -39,12 +39,12 @@ async def banir(ctx:commands.Context, user:discord.Member):
     else:
         await ctx.reply(f'{autor} pare de tentar banir as pessoas! Caso contrário o próximo será você..')
 
-@bot.command() #!rz curiosidades - O bot irá dizer uma curiosidade
+@bot.command() #!rz curiosidades - O bot irá dizer uma curiosidade.
 async def curiosidade(ctx):
     curiosidade = random.choice(curiosidades)
     await ctx.reply(curiosidade)
 
-@bot.command() #!rz dado - O bot irá rodar um dado e dirá o resultado.
+@bot.command() #!rz dado - O bot irá rolar um dado e dirá o resultado.
 async def dado(ctx, ld:int):
     lado = random.randint(1,ld)
     await ctx.reply(f'Caiu no {lado}!')
@@ -263,7 +263,7 @@ async def xingar(ctx, user:discord.Member):
     frase = [f'O(a) {user.mention} é um(a) {xingamento}',f'{user.mention}, seu {xingamento}!']
     await ctx.reply(random.choice(frase))
 
-@bot.command() #!rz wiki (termo) - O boto vai pesquisar na wikipedia o que o usuário pedir.
+@bot.command() #!rz wiki (termo) - O bot vai pesquisar na wikipedia o que o usuário pedir.
 async def wiki(ctx: commands.Context, *, termo):
     async with ctx.channel.typing():
         try:
