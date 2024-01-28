@@ -91,7 +91,8 @@ informacoes = '''> Heyyyy! Eu sou Natsuki Subaru, o viajante perdido neste novo 
 5. `!rz wiki` - Faça uma pesquisa na Wikipedia.
 
 👉 Como Contribuir:
-- Se quiser ajudar, envie sugestões e relatos de bugs para o email jcrxl20@gmail.com, além de poder ajudar contribuindo com um pix na seguinte chave: 8897483734.
+- Se quiser ajudar, envie sugestões e relatos de bugs para o email jcrxl20@gmail.com;
+- Você também pode ajudar contribuindo com um pix na seguinte chave: 8897483734.
 
 *Espero que possamos nos divertir juntos!*'''
 
