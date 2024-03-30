@@ -110,4 +110,4 @@ risadas = ['ka', 'kk', 'ks', 'rs']
 
 xingamentos = ['''filho de uma égua''', '''corno''', '''cadela''', '''arrombado''', '''mongol''',
 '''calabreso''', '''tilápio''', '''bosta''', '''jumento''', '''merda''', '''idiota''', '''otário''',
-'''carioca''', '''bolsominion''', '''petista''']
+'''carioca''', '''bolsominion''', '''petista''', '''safado''']
